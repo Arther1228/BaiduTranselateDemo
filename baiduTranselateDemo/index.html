@@ -5,22 +5,58 @@
 
 </head>
 <body>
-	<div>
+	
 	  <!--	<div  align="center" > 篇名:<input type="text" name="fname" id="article"/> </div>   -->
-	    篇名: <input type="text" name="article" id="article"/> </br> 
-		单词: <input type="text" name="word" id="word" />  <button type="button" onClick="search()">查询</button></br> 		
-		结果: <input type="text" name="result" id="result" />
+<!--
+<div>
+	  <h3>查询英文单词</h3>
+	   <strong> 篇名: </strong> <input type="text" name="article" id="article"/> </br> 
+		<strong> 单词: </strong> <input type="text" name="word" id="word" />  		<button type="button" class="btn btn-info" onClick="search()" >查询</button> </br>
+		<strong> 结果: </strong> <input type="text" name="result" id="result" />
 	</div>
+ -->
 
-	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<h3>查询英文单词</h3>
+
+	<form class="form-horizontal">
+	  <div class="control-group">
+		<label class="control-label" for="article">篇名: </label>
+		<div class="controls">
+		  <input type="text" id="article" placeholder="article">  </br> 
+		</div>
+	  </div>
+
+	  <div class="control-group">
+		<label class="control-label" for="word">单词:</label>
+		<div class="controls">
+		  <input type="text" id="word" placeholder="word">
+		  <button type="button" class="btn btn-info" onClick="search()" >查询</button> </br>
+		</div>
+	  </div>
+
+	  <div class="control-group">
+		<label class="control-label" for="result">结果:</label>
+		<div class="controls">
+		  <input type="text" id="result" placeholder="result">
+		</div>
+	  </div>
+
+	</form>
+
+
+
+	<link rel="stylesheet" type="text/css"	href="requires/bootstrap.css" />
+	<script src="requires/jquery.min.js"></script>
+    <script type="text/javascript" src="requires/bootstrap.min.js"></script>	
 	<script src="./md5.js"></script>
+
 	<script type="text/javascript">
 	 var wordBefore = $('#word').val();
 
 		function search() {
 			var word = $('#word').val();        //待查单词
 			//简单判断下是否和之前查的词一样
-			if(word == wordBefore){
+			if(word == wordBefore &&  word != ""){
 				alert("重复查询了:)");
 				$('#word').val(); 
 			}
@@ -94,7 +130,7 @@
 				f1.WriteLine(cotent);
 				f1.Close();
 			} catch (e) {
-				alert(e.name + ": " + e.message);
+				//alert(e.name + ": " + e.message);
 				//文件不存在就创建文件
 				f1 = fso.createtextfile(strFolder + filename + ".txt", true); 
 				f1.WriteLine("1." + src + "：    " + dst);
