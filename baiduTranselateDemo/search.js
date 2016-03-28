@@ -47,7 +47,7 @@ function search() {
  */
 function writeInTxt(article,src, dst) {
 
-    //按日期命名文件名
+	//按日期命名文件名
 	//var filename = getFileName();
 	filename = article;
 	//指定存储的文件夹
@@ -110,7 +110,7 @@ function searchArticle(article){
 	try {
 		//尝试读文件
 		var txt = "C:\\Users\\chuang\\Desktop\\Reading\\" + article + ".txt";
-        var ForAppending = 8 ;
+		var ForAppending = 8 ;
 		f1 = fso.OpenTextFile(txt, ForAppending);   //为了追加打开文件
 		f1.Close();
 		//文件存在article的input的元素设置灰色
@@ -122,14 +122,22 @@ function searchArticle(article){
 
 function showWords(){
 	var article =  $('#article').val();  //文章名
-    var ForReading = 1;
-    var txt = "C:\\Users\\chuang\\Desktop\\Reading\\" + article + ".txt";
-    f1 = fso.OpenTextFile(txt, ForReading);   //为了追加打开文件
-    var content = f1.ReadAll();
-
-	//获取已经有多少行
-	var count = getLine(txt);
-    $('#articleWords').attr("rows",count * 2)
-    $('#articleWords').val(content);  //文章名
+	var ForReading = 1;
+	var txt = "C:\\Users\\chuang\\Desktop\\Reading\\" + article + ".txt";
+	var content ;
+	try{
+		f1 = fso.OpenTextFile(txt, ForReading);   //为了追加打开文件
+		content = f1.ReadAll();
+		//获取已经有多少行
+		var count = getLine(txt);
+		$('#articleWords').attr("rows",count * 2)
+		$('#articleWords').val(content);  //文章名
+	}
+	catch(e){
+		//清空
+		$('#word').empty();    
+		$('#article').empty();     
+		$('#articleWords').empty();    
+	}
 
 }
